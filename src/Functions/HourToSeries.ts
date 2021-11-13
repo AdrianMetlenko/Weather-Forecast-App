@@ -1,5 +1,5 @@
 import {ForecastHour} from "../API/API_Response";
-import {series} from "../Containers/Day/API_Series";
+import {series} from "../Containers/Additional/API_Series";
 
 function HourToSeries(hours: ForecastHour[]) {
     let data: any = {}

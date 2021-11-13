@@ -12,7 +12,7 @@ type Series = {
     data: { [key: string]: number | string | Date }[]
 }
 
-function Graph(day: ForecastDay | undefined) {
+function DataGraph({day}:{day: ForecastDay | undefined}) {
 
     const data = useMemo(
         (): Series[] | undefined => {
@@ -92,4 +92,4 @@ function Graph(day: ForecastDay | undefined) {
     }
 }
 
-export default Graph
+export default DataGraph

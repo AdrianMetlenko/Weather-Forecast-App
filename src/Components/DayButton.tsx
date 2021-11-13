@@ -1,7 +1,7 @@
 import {Button, Typography} from "@mui/material";
 import React from "react";
-import {ForecastDay} from "../../API/API_Response";
-import dayLabel from "../../Functions/DayLabel";
+import {ForecastDay} from "../API/API_Response";
+import dayLabel from "../Functions/DayLabel";
 
 function DayTab(day: ForecastDay, index: number, setSelectedDay: any){
     return(

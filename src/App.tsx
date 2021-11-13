@@ -9,10 +9,15 @@ import {
     Typography,
     ButtonGroup
 } from "@mui/material";
-import Graph from "./Containers/Day/Graph";
+import DataGraph from "./Containers/Additional/DataGraph";
 import API_Example from "./API/API_Example.json"
 import {ForecastResponse} from "./API/API_Response";
-import DayButton from "./Containers/Day/DayButton";
+import DayButton from "./Components/DayButton";
+import DetailCard from "./Containers/Main/DetailCard";
+import DataTable from "./Containers/Additional/DataTable";
+import DaysButtonGroup from "./Containers/Main/DaysButtonGroup";
+import Main from "./Containers/Main";
+import Additional from "./Containers/Additional";
 
 function App() {
 
@@ -41,22 +46,14 @@ function App() {
                 alignItems: 'center',
                 p: 4
             }}>
-                <Box sx={{width: 1, maxWidth: 'sm'}}>
-                    <Typography variant={'h2'}>Weather Forecast</Typography>
-                    <Paper sx={{my: 2, width: 1, minHeight: 240}}>
-                        <Typography variant={'h4'}>Todays forcast detail</Typography>
-                    </Paper>
-                    {/*Using buttons instead of tabs as hooks cannot be created conditionally*/}
-                        <ButtonGroup variant="outlined" aria-label="outlined button group" fullWidth>
-                            {forecastData?.forecast.forecastday.map((day, index) =>
-                                DayButton(day, index, setSelectedDay)
-                            )}
-                        </ButtonGroup>
-                    <Paper sx={{height: 400, p: 2}}>
-                        <Box height={400-16} sx={{m:1}}>
-                            {Graph(forecastData?.forecast.forecastday[selectedDay])}
-                        </Box>
-                    </Paper>
+                <Box sx={{width: 1, maxWidth: 'lg', display: 'flex', flexDirection: {xs: 'column', md: 'row'}}}>
+                    <Main
+                        forecastData={forecastData}
+                        setSelectedDay={setSelectedDay}
+                        selectedDay={selectedDay}/>
+                    <Additional
+                        day={forecastData?.forecast.forecastday[selectedDay]}
+                    />
                 </Box>
             </Box>
         </ThemeProvider>

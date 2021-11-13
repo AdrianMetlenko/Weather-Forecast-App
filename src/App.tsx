@@ -6,10 +6,10 @@ import {
     responsiveFontSizes,
     Tab, Tabs,
     ThemeProvider,
-    Typography
+    Typography,
+    ButtonGroup
 } from "@mui/material";
-import Graphs from "./Containers/Day/Graphs";
-import {Phone} from "@mui/icons-material";
+import Graph from "./Containers/Day/Graph";
 import API_Example from "./API/API_Example.json"
 import {ForecastResponse} from "./API/API_Response";
 import DayButton from "./Containers/Day/DayButton";
@@ -29,7 +29,7 @@ function App() {
 
     useEffect(() => {
         setForecastData(API_Example)
-    },[])
+    }, [])
 
     return (
         <ThemeProvider theme={theme}>
@@ -46,14 +46,17 @@ function App() {
                     <Paper sx={{my: 2, width: 1, minHeight: 240}}>
                         <Typography variant={'h4'}>Todays forcast detail</Typography>
                     </Paper>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <Tabs value={selectedDay} variant="fullWidth" onChange={(event, newValue) => setSelectedDay(newValue)} aria-label="daily forecast tabs">
+                    {/*Using buttons instead of tabs as hooks cannot be created conditionally*/}
+                        <ButtonGroup variant="outlined" aria-label="outlined button group" fullWidth>
                             {forecastData?.forecast.forecastday.map((day, index) =>
-                                DayButton(day, index)
+                                DayButton(day, index, setSelectedDay)
                             )}
-                        </Tabs>
-                    </Box>
-                    {Graphs(forecastData?.forecast.forecastday[selectedDay])}
+                        </ButtonGroup>
+                    <Paper sx={{height: 400, p: 2}}>
+                        <Box height={400-16} sx={{m:1}}>
+                            {Graph(forecastData?.forecast.forecastday[selectedDay])}
+                        </Box>
+                    </Paper>
                 </Box>
             </Box>
         </ThemeProvider>

@@ -1,18 +1,22 @@
 import {ForecastHour} from "../API/API_Response";
+import {series} from "../Containers/Day/API_Series";
 
 function HourToSeries(hours: ForecastHour[]) {
-    //defining all the series by extracting keys from first hour
-    let series = ["temp_c", "wind_kph"]
-
     let data: any = {}
     series.forEach(attribute => {
-        data[attribute] = {
-            label: attribute,
+        data[attribute.api_key] = {
+            label: attribute.label + `  ${attribute.unit}`,
             data: hours.map(hour => {
+                const {unit, ...attributes} = attribute
                 return {
                     //primary axis is always the time
-                    primary: hour.time_epoch,
-                    secondary: hour[attribute]
+                    primary: new Date(hour.time),
+                    secondary: {
+                        value: hour[attribute.api_key],
+                        unit: unit
+                    },
+                    ...attributes
+
                 }
             })
         }

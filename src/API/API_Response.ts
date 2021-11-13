@@ -22,6 +22,7 @@ export interface ForecastDay {
 
 export interface ForecastHour {
     condition: Condition
+    time: string
     [key:string]: number | string | Condition
 }
 

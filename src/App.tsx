@@ -8,11 +8,11 @@ import {
     ThemeProvider,
     Typography
 } from "@mui/material";
-import TabContent from "./Containers/Day/TabContent";
+import Graphs from "./Containers/Day/Graphs";
 import {Phone} from "@mui/icons-material";
 import API_Example from "./API/API_Example.json"
 import {ForecastResponse} from "./API/API_Response";
-import DayTab from "./Containers/Day/Tab";
+import DayButton from "./Containers/Day/DayButton";
 
 function App() {
 
@@ -49,13 +49,11 @@ function App() {
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <Tabs value={selectedDay} variant="fullWidth" onChange={(event, newValue) => setSelectedDay(newValue)} aria-label="daily forecast tabs">
                             {forecastData?.forecast.forecastday.map((day, index) =>
-                                DayTab(day, index)
+                                DayButton(day, index)
                             )}
                         </Tabs>
                     </Box>
-                    {forecastData?.forecast.forecastday.map((day, index) =>
-                        TabContent (day, index, selectedDay)
-                    )}
+                    {Graphs(forecastData?.forecast.forecastday[selectedDay])}
                 </Box>
             </Box>
         </ThemeProvider>

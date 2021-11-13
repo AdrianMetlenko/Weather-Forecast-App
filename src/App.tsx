@@ -8,10 +8,11 @@ import {
     ThemeProvider,
     Typography
 } from "@mui/material";
-import DayHourly from "./Containers/DayHourly";
+import TabContent from "./Containers/Day/TabContent";
 import {Phone} from "@mui/icons-material";
 import API_Example from "./API/API_Example.json"
 import {ForecastResponse} from "./API/API_Response";
+import DayTab from "./Containers/Day/Tab";
 
 function App() {
 
@@ -28,14 +29,7 @@ function App() {
 
     useEffect(() => {
         setForecastData(API_Example)
-    },[API_Example])
-
-    function addProps(index: number) {
-        return {
-            id: `tab-${index}`,
-            'aria-controls': `tabpanel-${index}`,
-        };
-    }
+    },[])
 
     return (
         <ThemeProvider theme={theme}>
@@ -44,29 +38,24 @@ function App() {
                 display: 'flex',
                 minHeight: '100vh',
                 flexDirection: 'column',
-                alignItems: 'center'
+                alignItems: 'center',
+                p: 4
             }}>
-                <Box sx={{m: 5}}>
-                    <Typography variant={'h2'}>3 Day Weather Forecast</Typography>
-                    <Paper sx={{p: 1, my: 2, width: 1, minHeight: 200}}>
+                <Box sx={{width: 1, maxWidth: 'sm'}}>
+                    <Typography variant={'h2'}>Weather Forecast</Typography>
+                    <Paper sx={{my: 2, width: 1, minHeight: 240}}>
                         <Typography variant={'h4'}>Todays forcast detail</Typography>
                     </Paper>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <Tabs value={selectedDay} onChange={(event, newValue) => setSelectedDay(newValue)} aria-label="daily forecast tabs">
-                            <Tab label="Item Two" icon={<Phone />} {...addProps(0)} />
-                            <Tab label="Item Two" {...addProps(1)} />
-                            <Tab label="Item Three" {...addProps(2)} />
+                        <Tabs value={selectedDay} variant="fullWidth" onChange={(event, newValue) => setSelectedDay(newValue)} aria-label="daily forecast tabs">
+                            {forecastData?.forecast.forecastday.map((day, index) =>
+                                DayTab(day, index)
+                            )}
                         </Tabs>
                     </Box>
-                    <DayHourly value={'Today'} index={0}>
-                        Today
-                    </DayHourly>
-                    <DayHourly value={'Tomorrow'} index={1}>
-                        Tomorrow
-                    </DayHourly>
-                    <DayHourly value={'X Day'} index={2}>
-                        X Day
-                    </DayHourly>
+                    {forecastData?.forecast.forecastday.map((day, index) =>
+                        TabContent (day, index, selectedDay)
+                    )}
                 </Box>
             </Box>
         </ThemeProvider>

@@ -1,20 +1,29 @@
 export interface ForecastResponse {
     location: Location
-    current: {[key:string]: number | string | Condition}
+    current: {
+        condition: Condition
+        [key:string]: number | string | Condition
+    }
     forecast: {
         forecastday: ForecastDay[]
     }
 }
 
-interface ForecastDay {
+export interface ForecastDay {
     date: string
     date_epoch: number
-    day: {[key:string]: number | Condition}
+    day: {
+        condition: Condition
+        [key:string]: number | Condition
+    }
     astro: stringObject
-    hour: ForecastHour
+    hour: ForecastHour[]
 }
 
-interface ForecastHour {[key:string]: number | string | Condition}
+export interface ForecastHour {
+    condition: Condition
+    [key:string]: number | string | Condition
+}
 
 interface Condition {
     text: string,

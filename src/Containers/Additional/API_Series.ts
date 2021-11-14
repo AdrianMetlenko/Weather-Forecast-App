@@ -3,7 +3,7 @@ export let series = [
     {
         api_key: 'temp_c',
         label: 'Temperature',
-        unit: 'C'
+        unit: '\u00B0C',
     },
     {
         api_key: "wind_kph",

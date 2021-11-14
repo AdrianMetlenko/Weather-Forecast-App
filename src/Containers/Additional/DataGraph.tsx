@@ -12,17 +12,23 @@ type Series = {
     data: { [key: string]: number | string | Date }[]
 }
 
-function DataGraph({day}:{day: ForecastDay | undefined}) {
+function DataGraph({day}: { day: ForecastDay | undefined }) {
+
+    //state value for which attributes to show in graph
+    //2 included as defaults
+    const [showAttribute, setShowAttribute] = useState(['temp_c', 'wind_kph'])
 
     const data = useMemo(
         (): Series[] | undefined => {
             if (day) {
-                return Object.values(HourToSeries(day?.hour))
+                const allTransformedAttributes = HourToSeries(day?.hour)
+                //filtering all attribute series to only the "showAttributes"
+                return Object.entries(allTransformedAttributes).filter(([key,]) => showAttribute.includes(key)).map(([, value]) => value)
             } else {
                 return undefined
             }
         },
-        [day]
+        [day, showAttribute]
     )
 
     const primaryAxis = useMemo(
@@ -49,7 +55,7 @@ function DataGraph({day}:{day: ForecastDay | undefined}) {
                     {
                         getValue: datum => datum.secondary.value,
                         elementType: 'line',
-                        //TODO: unable to access datum unit -> added to label instead
+                        //unable to access datum unit -> added to label instead
                         // formatters: {
                         //     tooltip: (value: any, test:any) => {
                         //         return `${value?.value} ${value?.unit} `
@@ -64,22 +70,31 @@ function DataGraph({day}:{day: ForecastDay | undefined}) {
         [day]
     )
 
-    console.log(primaryAxis, secondaryAxes, data)
-
     if (data && primaryAxis && secondaryAxes) {
         return (
             <Box sx={{width: 1, height: '100%'}}>
                 <Box sx={{width: 1, height: '50px'}}>{series.map(item =>
-                    <Chip label={item.label} variant="outlined" onClick={() => console.log(item.label)} sx={{m:1/3}}/>)}
+                    //disabling last chip, as graph must always contain at least one series
+                    <Chip color={'primary'} disabled={showAttribute.includes(item.api_key) && showAttribute.length === 1} variant={showAttribute.includes(item.api_key) ? undefined : 'outlined'}
+                          label={item.label} onClick={() => {
+                        if (showAttribute.includes(item.api_key)) {
+                            //remove
+                            setShowAttribute(val => ([...val.filter(v => v !== item.api_key)]))
+                        } else {
+                            //add
+                            setShowAttribute(val => ([...val, item.api_key]))
+                        }
+                    }
+                    } sx={{m: 1 / 2, p: 1 / 2}}/>)}
                 </Box>
                 {/*<Box sx={{height: 'calc(100%-50px)'}}>*/}
-                    <Chart
-                        options={{
-                            data,
-                            primaryAxis,
-                            secondaryAxes,
-                        }}
-                    />
+                <Chart
+                    options={{
+                        data,
+                        primaryAxis,
+                        secondaryAxes,
+                    }}
+                />
                 {/*</Box>*/}
             </Box>
         )

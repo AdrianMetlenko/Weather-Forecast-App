@@ -46,7 +46,8 @@ function App() {
                 alignItems: 'center',
                 p: 4
             }}>
-                <Box sx={{width: 1, maxWidth: 'lg', display: 'flex', flexDirection: {xs: 'column', md: 'row'}}}>
+                <Typography variant={'h2'}>Weather Forecast</Typography>
+                <Box sx={{width: 1, maxWidth: 'xl', display: 'flex', flexDirection: {xs: 'column', md: 'row'}}}>
                     <Main
                         forecastData={forecastData}
                         setSelectedDay={setSelectedDay}

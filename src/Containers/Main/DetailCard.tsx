@@ -27,9 +27,6 @@ function DetailCard({day}: { day: ForecastDay | undefined }) {
                         </Box>
                     </Box>
                     <Box sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', m: 1}}>
-                        {/*{DetailChip(<Thermostat/>, 'error', day?.day.maxtemp_c + ' \u00B0C', 'Max. Temp.')}*/}
-                        {/*{DetailChip(<Thermostat/>, 'success', day?.day.avgtemp_c + ' \u00B0C', 'Avg. Temp.')}*/}
-                        {/*{DetailChip(<Thermostat/>, 'info', day?.day.mintemp_c + ' \u00B0C', 'Min. Temp.')}*/}
                         {DetailChip(<Cloud/>, 'error', day?.day.maxwind_kph + ' km/h', 'Max. Wind Speed')}
                         {DetailChip(<Opacity/>, 'info', day?.day.totalprecip_mm + ' mm', 'Total Precipitation')}
                         {DetailChip(<Visibility/>, 'success', day?.day.avgvis_km + ' km', 'Avg. Visibility')}

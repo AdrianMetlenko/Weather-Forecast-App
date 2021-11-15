@@ -2,7 +2,6 @@ import hourToSeries from "./HourToSeries";
 import {series} from "../Containers/Additional/API_Series";
 
 test('all attributes mapped to series', () => {
-    console.log(Object.keys(hourToSeries(testHours)))
     expect(Object.keys(hourToSeries(testHours)).length).toEqual(series.length)
     expect(Object.keys(hourToSeries(testHours))).toMatchObject(series.map(item => item.api_key))
 });

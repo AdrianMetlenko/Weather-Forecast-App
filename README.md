@@ -33,19 +33,17 @@ Basic unit tests have been written to spot-check some sample data, and demonstra
 Basic end-to-end testing has been configured following [this Blog](https://blog.logrocket.com/react-end-to-end-testing-jest-puppeteer/#whatispuppeteer)
 The test case ensures the API is successful in retrieving and displaying the default city data. See details in scripts > `npm test:e2e`
 
-While the value of testing on a larger codebase with multiple contributors is recognised, in this instance, as the code is developed by a single developer, in a short period, less thorough testing has been implemented.
-Additionally, it is my first time using these frameworks. I hope provided tests demonstrate an understanding of testing and the ability to use such frameworks.
+While the value of testing on a larger codebase with multiple contributors is recognised, in this instance, as the code is developed by a single developer in a short period of time, testing isn't very thorough.
+Additionally, it is my first time using these frameworks. I hope the provided tests demonstrate an understanding of testing and the ability to use such frameworks.
 
 
 ## Scripts
 
 ### 1 Initialise
-#### `npm initialise` or `npm i`a
+#### `npm initialise` or `npm i`
 
 Please initialise the project by running the above command.
 This will download all package dependencies required to run.
-
-In the project directory, you can run:
 
 ### 2 Run
 #### `npm start`

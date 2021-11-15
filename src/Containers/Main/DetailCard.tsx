@@ -1,7 +1,7 @@
-import {Box, Chip, Paper, Typography} from "@mui/material";
+import {Box, Paper, Typography} from "@mui/material";
 import React from "react";
 import {ForecastDay} from "../../API/TS_API_Response";
-import {Cloud, Opacity, Thermostat, Visibility, Warning} from "@mui/icons-material";
+import {Cloud, Opacity, Visibility, Warning} from "@mui/icons-material";
 import DetailChip from "../../Components/DetailChip";
 import Loading from "../../Components/Loading";
 
@@ -12,7 +12,7 @@ function DetailCard({day}: { day: ForecastDay | undefined }) {
                 <Box>
                     <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', m: 1, mb: 2}}>
                         <Box sx={{flex: 1, justifyContent: 'flex-end', display: 'flex'}}>
-                            <img src={day?.day.condition.icon} style={{height: '80px'}}/>
+                            <img alt='weather condition icon' src={day?.day.condition.icon} style={{height: '80px'}}/>
                         </Box>
                         <Typography sx={{ml: 2, flex: 2, textAlign: 'center'}} variant={'h4'}>
                             {day?.day.condition.text}

@@ -1,14 +1,19 @@
 import {Autocomplete, Box, Paper, TextField, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {CityLocation, ForecastDay, ForecastResponse} from "../../API/TS_API_Response";
+import React, {useState} from "react";
+import {CityLocation, ForecastResponse} from "../../API/TS_API_Response";
 import {getAutocomplete, getForecast} from "../../API/API_Get";
 
 const apiKey = process.env.REACT_APP_WEATHER_API_KEY
 
-function CitySelect({
-                        setForecastData,
-                        forecastData
-                    }: { setForecastData: any, forecastData: ForecastResponse | undefined }) {
+function CitySelect(
+    {
+        setForecastData,
+        forecastData
+    }: {
+        setForecastData: any,
+        forecastData: ForecastResponse | undefined
+    }) {
+
     const [options, setOptions] = useState([]);
 
     return (

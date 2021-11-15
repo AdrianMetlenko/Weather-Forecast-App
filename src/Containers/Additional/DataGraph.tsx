@@ -1,6 +1,6 @@
-import {ForecastDay, ForecastHour} from "../../API/TS_API_Response";
-import {AxisOptions, AxisTimeOptions, Chart} from "react-charts";
-import {ReactChild, ReactFragment, ReactPortal, useMemo, useState} from "react";
+import {ForecastDay} from "../../API/TS_API_Response";
+import {AxisOptions, Chart} from "react-charts";
+import {useMemo, useState} from "react";
 import hourToSeries from "../../Functions/HourToSeries";
 import {Box, Chip, Paper} from "@mui/material";
 import {format} from "date-fns";
@@ -80,7 +80,7 @@ function DataGraph({day}: { day: ForecastDay | undefined }) {
                     <Chip
                         key={item.api_key}
                         color={'primary'}
-                        disabled={loading || showAttribute.includes(item.api_key) && showAttribute.length === 1}
+                        disabled={loading || (showAttribute.includes(item.api_key) && showAttribute.length === 1)}
                         variant={showAttribute.includes(item.api_key) ? undefined : 'outlined'}
                         label={item.label} onClick={() => {
                         if (showAttribute.includes(item.api_key)) {

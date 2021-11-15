@@ -1,4 +1,4 @@
-import {Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from "@mui/material";
+import {Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import React from "react";
 import {ForecastDay} from "../../API/TS_API_Response";
 import {series} from "./API_Series";
@@ -53,7 +53,7 @@ function DataTable({day}: { day: ForecastDay | undefined }) {
                                                 key={hour}
                                                 sx={{bgcolor: "background.paper"}}
                                                 align="center">
-                                                <img src={day?.hour[hour]['condition'].icon}/>
+                                                <img alt='weather condition icon' src={day?.hour[hour]['condition'].icon}/>
                                             </TableCell>
                                         }
                                     )}

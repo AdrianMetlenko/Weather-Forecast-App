@@ -1,4 +1,4 @@
-import {ForecastHour} from "../API/API_Response";
+import {ForecastHour} from "../API/TS_API_Response";
 import {series} from "../Containers/Additional/API_Series";
 import {Series} from "react-charts";
 

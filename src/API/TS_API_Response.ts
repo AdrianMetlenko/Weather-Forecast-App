@@ -1,5 +1,5 @@
 export interface ForecastResponse {
-    location: Location
+    location: CityLocation
     current: {
         condition: Condition
         [key:string]: number | string | Condition
@@ -34,7 +34,7 @@ interface Condition {
 
 type stringObject = {[key:string]: string}
 
-interface Location {
+export interface CityLocation {
     name: string
     region: string
     country: string

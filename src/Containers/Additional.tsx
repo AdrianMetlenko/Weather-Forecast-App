@@ -1,6 +1,6 @@
 import {Box, Paper, Typography} from "@mui/material";
 import React from "react";
-import {ForecastDay} from "../API/API_Response";
+import {ForecastDay} from "../API/TS_API_Response";
 import DataGraph from "./Additional/DataGraph";
 import DataTable from "./Additional/DataTable";
 

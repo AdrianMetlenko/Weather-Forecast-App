@@ -1,15 +1,14 @@
-import {Box, Paper, Typography} from "@mui/material";
 import React from "react";
 import DetailCard from "./Main/DetailCard";
 import DaysButtonGroup from "./Main/DaysButtonGroup";
-import {ForecastResponse} from "../API/API_Response";
-import City from "./Main/City";
+import {ForecastResponse} from "../API/TS_API_Response";
+import CitySelect from "./Main/City";
 
-function Main({forecastData, setSelectedDay, selectedDay}: {forecastData: ForecastResponse | undefined, setSelectedDay: any, selectedDay: number}) {
+function Main({forecastData, setSelectedDay, selectedDay, setForecastData}: {forecastData: ForecastResponse | undefined, setSelectedDay: any, selectedDay: number, setForecastData: any}) {
     return (
         <>
-            <City day={forecastData?.forecast.forecastday[selectedDay]}/>
-            <DaysButtonGroup days={forecastData?.forecast.forecastday} setSelectedDay={setSelectedDay}/>
+            <CitySelect setForecastData={setForecastData} forecastData={forecastData}/>
+            <DaysButtonGroup selectedDay={selectedDay} days={forecastData?.forecast.forecastday} setSelectedDay={setSelectedDay}/>
             <DetailCard day={forecastData?.forecast.forecastday[selectedDay]}/>
             </>
 

@@ -1,10 +1,11 @@
-import {ForecastDay, ForecastHour} from "../../API/API_Response";
+import {ForecastDay, ForecastHour} from "../../API/TS_API_Response";
 import {AxisOptions, AxisTimeOptions, Chart} from "react-charts";
 import {ReactChild, ReactFragment, ReactPortal, useMemo, useState} from "react";
 import HourToSeries from "../../Functions/HourToSeries";
 import {Box, Chip, Paper} from "@mui/material";
 import {format} from "date-fns";
 import {series} from "./API_Series";
+import Loading from "../../Components/Loading";
 
 
 type Series = {
@@ -70,29 +71,31 @@ function DataGraph({day}: { day: ForecastDay | undefined }) {
         [day]
     )
 
-    if (data && primaryAxis && secondaryAxes) {
-        return (
-            <Box sx={{m: 2, maxWidth: {xs: `calc(100vw - ${5 * 8 * 2}px)`, md: '600px', lg: '800px', xl: '1000px'}}}>
-                <Box sx={{px: 3, py: 1}}>
-                    {series.map(item =>
-                        //disabling last chip, as graph must always contain at least one series
-                        <Chip color={'primary'}
-                              disabled={showAttribute.includes(item.api_key) && showAttribute.length === 1}
-                              variant={showAttribute.includes(item.api_key) ? undefined : 'outlined'}
-                              label={item.label} onClick={() => {
-                            if (showAttribute.includes(item.api_key)) {
-                                //remove
-                                setShowAttribute(val => ([...val.filter(v => v !== item.api_key)]))
-                            } else {
-                                //add
-                                setShowAttribute(val => ([...val, item.api_key]))
-                            }
+    const loading = !(data && primaryAxis && secondaryAxes)
+    return (
+        <Box sx={{m: 2, maxWidth: {xs: `calc(100vw - ${5 * 8 * 2}px)`, md: '600px', lg: '800px', xl: '1000px'}}}>
+            <Box sx={{px: 3, py: 1}}>
+                {series.map(item =>
+                    //disabling last chip, as graph must always contain at least one series
+                    <Chip
+                        key={item.api_key}
+                        color={'primary'}
+                        disabled={loading || showAttribute.includes(item.api_key) && showAttribute.length === 1}
+                        variant={showAttribute.includes(item.api_key) ? undefined : 'outlined'}
+                        label={item.label} onClick={() => {
+                        if (showAttribute.includes(item.api_key)) {
+                            //remove
+                            setShowAttribute(val => ([...val.filter(v => v !== item.api_key)]))
+                        } else {
+                            //add
+                            setShowAttribute(val => ([...val, item.api_key]))
                         }
-                        } sx={{m: 1 / 2, p: 1 / 2, fontSize: '0.9rem'}}/>)}
-                </Box>
-                <Paper elevation={5} sx={{p:3}}>
+                    }
+                    } sx={{m: 1 / 2, p: 1 / 2, fontSize: '0.9rem'}}/>)}
+            </Box>
+            <Paper elevation={5} sx={{p: 3}}>
+                {!loading ?
                     <Box sx={{height: '100%', minHeight: 250}}>
-                        {/*<Box sx={{m:1}}>*/}
                         <Chart
                             options={{
                                 data,
@@ -100,18 +103,11 @@ function DataGraph({day}: { day: ForecastDay | undefined }) {
                                 secondaryAxes,
                             }}
                         />
-                        {/*</Box>*/}
-                    </Box>
-                </Paper>
-            </Box>
-        )
-    } else {
-        return (
-            <Box sx={{m: 2}}>
-                Loading...
-            </Box>
-        )
-    }
+                    </Box> : <Loading/>
+                }
+            </Paper>
+        </Box>
+    )
 }
 
 export default DataGraph

@@ -22,10 +22,10 @@ function CitySelect({
                 mb: 2,
                 flexDirection: 'column'
             }}>
-                <Typography sx={{ml: 2,}} variant={'h4'}>
+                <Typography sx={{ml: 2,}} variant={'h4'} id={'CityName'}>
                     {forecastData?.location.name}
                 </Typography>
-                <Typography sx={{ml: 2,}} variant={'h6'}>
+                <Typography sx={{ml: 2,}} variant={'h6'} id={'CityRegionCountry'}>
                     {forecastData?.location.region + ', ' + forecastData?.location.country}
                 </Typography>
             </Box>

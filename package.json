@@ -1,5 +1,6 @@
 {
   "name": "weather-forecast-app",
+  "author": "Adrian Metlenko",
   "version": "1.0.0",
   "private": true,
   "dependencies": {

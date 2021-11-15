@@ -10,7 +10,7 @@ function DetailChip(icon: any, color: any, valueLabel: string, attribute: string
                 label={
                     <Chip
                         label={<Typography sx={{fontSize:'1rem'}}>{valueLabel}</Typography>}
-                        sx={{bgcolor: 'white', ml: 1}}
+                        sx={{bgcolor: 'white'}}
                     />}
                 sx={{height: '3rem', borderRadius: '1.5rem'}}
             />

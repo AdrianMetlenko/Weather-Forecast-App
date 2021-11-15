@@ -1,7 +1,7 @@
 import {ForecastDay, ForecastHour} from "../../API/TS_API_Response";
 import {AxisOptions, AxisTimeOptions, Chart} from "react-charts";
 import {ReactChild, ReactFragment, ReactPortal, useMemo, useState} from "react";
-import HourToSeries from "../../Functions/HourToSeries";
+import hourToSeries from "../../Functions/HourToSeries";
 import {Box, Chip, Paper} from "@mui/material";
 import {format} from "date-fns";
 import {series} from "./API_Series";
@@ -22,7 +22,7 @@ function DataGraph({day}: { day: ForecastDay | undefined }) {
     const data = useMemo(
         (): Series[] | undefined => {
             if (day) {
-                const allTransformedAttributes = HourToSeries(day?.hour)
+                const allTransformedAttributes = hourToSeries(day?.hour)
                 //filtering all attribute series to only the "showAttributes"
                 return Object.entries(allTransformedAttributes).filter(([key,]) => showAttribute.includes(key)).map(([, value]) => value)
             } else {

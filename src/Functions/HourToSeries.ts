@@ -1,8 +1,7 @@
 import {ForecastHour} from "../API/TS_API_Response";
 import {series} from "../Containers/Additional/API_Series";
-import {Series} from "react-charts";
 
-function HourToSeries(hours: ForecastHour[]): {[key:string]: {data: any[], label: string}}  {
+function hourToSeries(hours: ForecastHour[]): {[key:string]: {data: any[], label: string}}  {
     let data: any = {}
     series.forEach(attribute => {
         data[attribute.api_key] = {
@@ -25,4 +24,4 @@ function HourToSeries(hours: ForecastHour[]): {[key:string]: {data: any[], label
     return data
 }
 
-export default HourToSeries
+export default hourToSeries

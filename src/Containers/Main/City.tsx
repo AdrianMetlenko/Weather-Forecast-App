@@ -5,15 +5,31 @@ import {getAutocomplete, getForecast} from "../../API/API_Get";
 
 const apiKey = process.env.REACT_APP_WEATHER_API_KEY
 
-function CitySelect({setForecastData, forecastData}: { setForecastData: any, forecastData: ForecastResponse | undefined }) {
+function CitySelect({
+                        setForecastData,
+                        forecastData
+                    }: { setForecastData: any, forecastData: ForecastResponse | undefined }) {
     const [options, setOptions] = useState([]);
 
     return (
         <Paper sx={{m: 2, p: 2}} elevation={5}>
-            <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', m: 1, mb: 2, flexDirection: 'column'}}>
-                <Typography sx={{ml: 2,}} variant={'h4'}>{forecastData?.location.name}</Typography>
-                <Typography sx={{ml: 2,}} variant={'h6'}>{forecastData?.location.region + ', ' + forecastData?.location.country}</Typography>
+            {forecastData &&
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                m: 1,
+                mb: 2,
+                flexDirection: 'column'
+            }}>
+                <Typography sx={{ml: 2,}} variant={'h4'}>
+                    {forecastData?.location.name}
+                </Typography>
+                <Typography sx={{ml: 2,}} variant={'h6'}>
+                    {forecastData?.location.region + ', ' + forecastData?.location.country}
+                </Typography>
             </Box>
+            }
             <Autocomplete
                 id="city"
                 freeSolo
@@ -33,7 +49,7 @@ function CitySelect({setForecastData, forecastData}: { setForecastData: any, for
                 options={options}
                 filterOptions={(x) => x}
                 onInputChange={(event, newInputValue) => {
-                    if(newInputValue) {
+                    if (newInputValue) {
                         if (apiKey) {
                             //TODO: Recommended to add debounce/throttle calls
                             getAutocomplete(apiKey, newInputValue)

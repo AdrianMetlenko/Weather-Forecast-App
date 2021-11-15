@@ -1,26 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {
     Box,
-    createTheme,
-    Paper,
     responsiveFontSizes,
-    Tab, Tabs,
     ThemeProvider,
     Typography,
-    ButtonGroup, alpha
 } from "@mui/material";
-import DataGraph from "./Containers/Additional/DataGraph";
-import API_Example from "./API/API_Example.json"
+
 import {ForecastResponse} from "./API/TS_API_Response";
-import DayButton from "./Components/DayButton";
-import DetailCard from "./Containers/Main/DetailCard";
-import DataTable from "./Containers/Additional/DataTable";
-import DaysButtonGroup from "./Containers/Main/DaysButtonGroup";
 import Main from "./Containers/Main";
 import Additional from "./Containers/Additional";
-import {blue} from "@mui/material/colors";
 import themeConfig from "./Theme";
 import {getForecast} from "./API/API_Get";
+import {Helmet, HelmetProvider} from "react-helmet-async";
 
 function App() {
 
@@ -43,6 +34,10 @@ function App() {
 
     const windowPadding = 3
     return (
+        <HelmetProvider>
+            <Helmet>
+                <title>Weather Forecast</title>
+            </Helmet>
         <ThemeProvider theme={theme}>
             <Box sx={{
                 bgcolor: "background.default",
@@ -70,6 +65,7 @@ function App() {
                 </Box>
             </Box>
         </ThemeProvider>
+        </HelmetProvider>
     );
 }
 

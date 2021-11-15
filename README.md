@@ -4,7 +4,7 @@ A simple React app which allows the user to search for a city by name, and displ
 
 All data is sourced form the [weatherapi.com](www.weatherapi.com) API.
 
-The App assumes a home location of Sydney, Australia. Therefore, metric attributes are used.
+The App assumes a home location of Sydney, Australia. Therefore, Metric attributes are used (as opposed to Imperial).
 
 All development & testing has been with Google Chrome Browser.
 

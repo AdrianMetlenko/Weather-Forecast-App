@@ -1,10 +1,10 @@
 # Weather Forecast App
 
-A simple React app which allows the user to search for a city by name, and displays the forecast for the upcoming 3 days. 
+A simple React app that allows the user to search for a city by name and displays the forecast for the upcoming 3 days. 
 
-All data is sourced form the [weatherapi.com](www.weatherapi.com) API.
+All data is sourced from the [weatherapi.com](www.weatherapi.com) API.
 
-The App assumes a home location of Sydney, Australia. Therefore, Metric attributes are used (as opposed to Imperial).
+The App assumes a home location of `Sydney, Australia`. Therefore, Metric attributes are used (as opposed to Imperial).
 
 All development & testing has been with Google Chrome Browser.
 
@@ -20,27 +20,27 @@ Completing this exercise as a candidate for the 'Charts' team, I felt it was nec
 The [React-Charts](https://react-charts.tanstack.com/) library was used for this.
 I used the MUI chips to allow the user to select which attribute series to display, as each attribute has significantly varying data ranges.
 
-While the API provides a large quantity of attributes, only some were selected to simplify the design. Where both imperial and metric values are provided, only the metric is displayed.
+While the API provides a large number of attributes, only some were selected to simplify the design. Where both imperial and metric values are provided, only the metric is displayed.
 
 ## Testing
 
 The [JestJS](https://jestjs.io/) Testing Framework has been used, as it is a leading option and can be included in the [Create React App](https://github.com/facebook/create-react-app) setup.
 
-A smoke test checks successful compile, and identifies the title is rendered.
+A smoke test checks successful compile and identifies the title is rendered.
 
 Basic unit tests have been written to spot-check some sample data, and demonstrate testing understanding. See details in scripts > `npm test`
 
-Basic end-to-end testing has been confirgured following [this Blog](https://blog.logrocket.com/react-end-to-end-testing-jest-puppeteer/#whatispuppeteer)
+Basic end-to-end testing has been configured following [this Blog](https://blog.logrocket.com/react-end-to-end-testing-jest-puppeteer/#whatispuppeteer)
 The test case ensures the API is successful in retrieving and displaying the default city data. See details in scripts > `npm test:e2e`
 
-While the value of testing on a larger codebase with multiple contributors is recognised, in this instance, as the code is developed by a single developer, in a short span of time, minimal testing has been implemented.
-Additionally, it is my first time using these frameworks. I hope provided tests demonstrate an understanding of testing and ability to use such frameworks.
+While the value of testing on a larger codebase with multiple contributors is recognised, in this instance, as the code is developed by a single developer, in a short period, less thorough testing has been implemented.
+Additionally, it is my first time using these frameworks. I hope provided tests demonstrate an understanding of testing and the ability to use such frameworks.
 
 
 ## Scripts
 
 ### 1 Initialise
-#### `npm initialise` or `npm i`
+#### `npm initialise` or `npm i`a
 
 Please initialise the project by running the above command.
 This will download all package dependencies required to run.

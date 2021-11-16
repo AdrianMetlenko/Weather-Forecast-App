@@ -5,7 +5,7 @@ import {getAutocomplete, getForecast} from "../../API/API_Get";
 
 const apiKey = process.env.REACT_APP_WEATHER_API_KEY
 
-function CitySelect(
+function City(
     {
         setForecastData,
         forecastData
@@ -77,4 +77,4 @@ function CitySelect(
     )
 }
 
-export default CitySelect
+export default City
